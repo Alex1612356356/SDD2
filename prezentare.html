@@ -6,13 +6,13 @@
 -->
 <html>
 	<head>
-		<title>Game Library</title>
+		<title>Prezentare - Game Library</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
-	<body class="homepage is-preload">
+	<body class="no-sidebar is-preload">
 		<div id="page-wrapper">
 
 			<!-- Header -->
@@ -22,12 +22,7 @@
 						<div class="inner">
 							<header>
 								<h1><a href="index.html" id="logo">Game Library</a></h1>
-								<hr />
-								<p>Gestionarea unei colecții de jocuri video folosind liste dublu înlănțuite</p>
 							</header>
-							<footer>
-								<a href="#main" class="button circled scrolly">Start</a>
-							</footer>
 						</div>
 
 					<!-- Nav -->
@@ -45,41 +40,42 @@
 
 				</div>
 
-			<!-- Banner -->
-				<section id="banner">
-					<header>
-						<h2>Gestionarea unei colecții de jocuri video folosind liste dublu înlănțuite</h2>
-						<p>
-							Acest proiect prezintă o aplicație realizată în limbajul C++ care permite gestionarea unei colecții de jocuri video folosind o listă dublu înlănțuită.
-						</p>
-					</header>
-				</section>
-
 			<!-- Main -->
-				<div class="wrapper style2">
+				<div class="wrapper style1">
 
-					<article id="main" class="container special">
-						<header>
-							<h2><a href="#">Despre Proiect</a></h2>
+					<div class="container">
+						<article id="main" class="special">
+							<header>
+								<h2><a href="#">Prezentare</a></h2>
+								<p>
+									Programul gestionează informații despre jocuri video folosind o listă dublu înlănțuită, în care fiecare nod conține datele unui joc.
+								</p>
+							</header>
 							<p>
-								Programul citește datele dintr-un fișier, creează o structură de tip listă și oferă utilizatorului un meniu interactiv prin care poate realiza diverse operații asupra colecției de jocuri.
+								Fiecare joc este caracterizat prin:
 							</p>
-						</header>
-						<p>
-							Printre operațiile disponibile se numără:
-						</p>
-						<ul style="text-align: left; display: inline-block; margin-bottom: 2em;">
-							<li>afișarea tuturor jocurilor</li>
-							<li>inserarea unui joc nou</li>
-							<li>ștergerea unui joc</li>
-							<li>ordonarea după rating</li>
-							<li>calcularea unor statistici (rating maxim, minim, medie)</li>
-							<li>filtrarea jocurilor după anul lansării</li>
-						</ul>
-						<p>
-							Scopul proiectului este de a demonstra modul în care structurile de date dinamice pot fi folosite pentru organizarea și manipularea eficientă a datelor.
-						</p>
-					</article>
+							<ul style="text-align: left; display: inline-block; margin-bottom: 2em;">
+								<li>titlul jocului</li>
+								<li>anul lansării</li>
+								<li>nivelul de dificultate</li>
+								<li>ratingul acordat de jucători</li>
+							</ul>
+							<p>
+								Datele sunt citite din fișierul <strong>date.in</strong>, iar apoi sunt stocate într-o listă dublu înlănțuită.
+							</p>
+							<p>
+								Aplicația permite utilizatorului să interacționeze cu lista printr-un meniu cu opțiuni, ceea ce face posibilă administrarea colecției de jocuri într-un mod simplu și eficient.
+							</p>
+							<p>
+								Acest tip de structură permite:
+							</p>
+							<ul style="text-align: left; display: inline-block; margin-bottom: 2em;">
+								<li>inserări rapide</li>
+								<li>ștergeri eficiente</li>
+								<li>parcurgerea listei în ambele direcții</li>
+							</ul>
+						</article>
+					</div>
 
 				</div>
 
