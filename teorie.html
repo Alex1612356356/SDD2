@@ -6,13 +6,13 @@
 -->
 <html>
 	<head>
-		<title>Game Library</title>
+		<title>Teorie - Game Library</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
-	<body class="homepage is-preload">
+	<body class="no-sidebar is-preload">
 		<div id="page-wrapper">
 
 			<!-- Header -->
@@ -22,12 +22,7 @@
 						<div class="inner">
 							<header>
 								<h1><a href="index.html" id="logo">Game Library</a></h1>
-								<hr />
-								<p>Gestionarea unei colecții de jocuri video folosind liste dublu înlănțuite</p>
 							</header>
-							<footer>
-								<a href="#main" class="button circled scrolly">Start</a>
-							</footer>
 						</div>
 
 					<!-- Nav -->
@@ -45,41 +40,41 @@
 
 				</div>
 
-			<!-- Banner -->
-				<section id="banner">
-					<header>
-						<h2>Gestionarea unei colecții de jocuri video folosind liste dublu înlănțuite</h2>
-						<p>
-							Acest proiect prezintă o aplicație realizată în limbajul C++ care permite gestionarea unei colecții de jocuri video folosind o listă dublu înlănțuită.
-						</p>
-					</header>
-				</section>
-
 			<!-- Main -->
-				<div class="wrapper style2">
+				<div class="wrapper style1">
 
-					<article id="main" class="container special">
-						<header>
-							<h2><a href="#">Despre Proiect</a></h2>
+					<div class="container">
+						<article id="main" class="special">
+							<header>
+								<h2><a href="#">Teorie: Lista dublu înlănțuită</a></h2>
+								<p>
+									Lista dublu înlănțuită este o structură de date dinamică formată din noduri conectate între ele prin doi pointeri.
+								</p>
+							</header>
+							<section style="text-align: left; max-width: 800px; margin: 0 auto;">
+								<h3>Componentele unui nod</h3>
+								<p>
+									Structura unui nod conține:
+								</p>
+								<ul>
+									<li><strong>Informația utilă:</strong> datele despre joc (titlu, an, dificultate, rating).</li>
+									<li><strong>Pointer către nodul următor:</strong> adresa memoriei următorului element din listă.</li>
+									<li><strong>Pointer către nodul anterior:</strong> adresa memoriei elementului precedent din listă.</li>
+								</ul>
+							</section>
+							<section style="text-align: left; max-width: 800px; margin: 2em auto;">
+								<h3>Avantajele listei dublu înlănțuite</h3>
+								<ul>
+									<li>Inserarea și ștergerea elementelor se realizează eficient.</li>
+									<li>Navigarea se poate face atât înainte (spre următorul), cât și înapoi (spre anteriorul).</li>
+									<li>Dimensiunea listei poate crește sau scădea dinamic, în funcție de necesități.</li>
+								</ul>
+							</section>
 							<p>
-								Programul citește datele dintr-un fișier, creează o structură de tip listă și oferă utilizatorului un meniu interactiv prin care poate realiza diverse operații asupra colecției de jocuri.
+								În acest proiect, lista este utilizată pentru a stoca și gestiona o colecție de jocuri video.
 							</p>
-						</header>
-						<p>
-							Printre operațiile disponibile se numără:
-						</p>
-						<ul style="text-align: left; display: inline-block; margin-bottom: 2em;">
-							<li>afișarea tuturor jocurilor</li>
-							<li>inserarea unui joc nou</li>
-							<li>ștergerea unui joc</li>
-							<li>ordonarea după rating</li>
-							<li>calcularea unor statistici (rating maxim, minim, medie)</li>
-							<li>filtrarea jocurilor după anul lansării</li>
-						</ul>
-						<p>
-							Scopul proiectului este de a demonstra modul în care structurile de date dinamice pot fi folosite pentru organizarea și manipularea eficientă a datelor.
-						</p>
-					</article>
+						</article>
+					</div>
 
 				</div>
 
