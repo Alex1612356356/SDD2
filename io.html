@@ -1,48 +1,23 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Structură - Game Library</title>
+		<title>Date I/O - Game Library</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<style>
-			.diagram {
-				background: #f8f8f8;
-				border: 1px solid #ddd;
-				border-radius: 8px;
-				padding: 2em;
-				margin: 2em 0;
-				text-align: center;
+			.io-block {
+				background: #f4f4f4;
+				padding: 1.5em;
+				border-left: 5px solid #333;
+				margin: 1.5em 0;
+				font-family: 'Courier New', Courier, monospace;
+				white-space: pre-wrap;
+				text-align: left;
 			}
-			.node-box {
-				display: inline-block;
-				padding: 10px 20px;
-				border: 2px solid #333;
-				border-radius: 5px;
-				background: #fff;
-				margin: 10px;
-				font-weight: bold;
-				position: relative;
-			}
-			.main-node {
-				background: #e1f5fe;
-				border-color: #01579b;
-			}
-			.arrow {
-				font-size: 24px;
-				color: #555;
-			}
-			.flow-container {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-			}
-			.sub-nodes {
-				display: flex;
-				flex-wrap: wrap;
-				justify-content: center;
-				max-width: 800px;
+			h3 {
+				margin-top: 2em;
 			}
 		</style>
 	</head>
@@ -82,77 +57,75 @@
 					<div class="container">
 						<article id="main" class="special animated-fade-in">
 							<header>
-								<h2><a href="#">Structura Programului și Legături</a></h2>
+								<h2><a href="#">Date de Intrare și Ieșire</a></h2>
 								<p>
-									O privire de ansamblu asupra modului în care funcțiile interacționează în cadrul aplicației.
+									Exemple de fișiere de intrare și rezultate ale execuției programului.
 								</p>
 							</header>
 
-							<div class="diagram">
-								<div class="flow-container">
-									<div class="node-box main-node">main()</div>
-									<div class="arrow">↓</div>
-									<div class="sub-nodes">
-										<div class="node-box">creare()</div>
-										<div class="node-box">parcurgere()</div>
-										<div class="node-box">inserare()</div>
-										<div class="node-box">stergere()</div>
-										<div class="node-box">ordonareRating()</div>
-										<div class="node-box">numarJocuri()</div>
-										<div class="node-box">ratingMaxim()</div>
-										<div class="node-box">ratingMinim()</div>
-										<div class="node-box">medieRating()</div>
-										<div class="node-box">jocuriDupaAn()</div>
-										<div class="node-box">eliberare()</div>
-									</div>
-								</div>
-								<p style="margin-top: 1em; font-style: italic;">
-									Funcția <code>main()</code> acționează ca un dispecer, apelând funcțiile specifice în baza opțiunilor selectate de utilizator în meniu.
+							<section style="text-align: left;">
+								<h3>Fișierul de Intrare: <code>date.in</code></h3>
+								<p>
+									Prima linie conține numărul de jocuri (n). Următoarele linii conțin, pentru fiecare joc: titlul, anul lansării, dificultatea și ratingul.
 								</p>
-							</div>
+								<div class="io-block">3
+The Witcher 3
+2015
+5
+9.8
+Elden Ring
+2022
+5
+9.5
+Stardew Valley
+2016
+2
+9.2</div>
 
-							<p>
-								Utilizăm biblioteci precum <strong>iostream</strong>, <strong>fstream</strong> și <strong>string</strong> pentru a gestiona fluxurile de date și fișierele. Structura <strong>nod</strong> definește formatul fiecărui element din listă.
-							</p>
-							<section>
-								<header>
-									<h3>Elemente de Control</h3>
-								</header>
+								<h3>Exemplu de Ieșire în Consolă</h3>
 								<p>
-									Pointerii <strong>prim</strong> și <strong>ultim</strong> sunt esențiali pentru evidența listei. Meniul principal din <strong>main()</strong> coordonează toate apelurile către funcțiile de prelucrare.
+									Afișarea listei după citirea din fișier:
 								</p>
+								<div class="io-block">The Witcher 3 - 2015 - dificultate: 5 - rating: 9.8
+Elden Ring - 2022 - dificultate: 5 - rating: 9.5
+Stardew Valley - 2016 - dificultate: 2 - rating: 9.2</div>
+
+								<h3>Calcul Statistici</h3>
 								<p>
-									Fiecare modul este gândit să fie independent și reutilizabil în contextul gestiunii datelor dinamice.
+									Rezultatul opțiunilor de rating maxim și medie:
 								</p>
+								<div class="io-block">Joc cu rating maxim: The Witcher 3 - 9.8
+Media ratingurilor: 9.5</div>
 							</section>
+
 						</article>
 						<hr />
 						<div class="row">
 							<article class="col-4 col-12-mobile special animated-fade-in">
 								<a href="#" class="image featured"><img src="images/pic07.jpg" alt="" /></a>
 								<header>
-									<h3><a href="#">Biblioteci C++</a></h3>
+									<h3><a href="#">Format date.in</a></h3>
 								</header>
 								<p>
-									Folosirea standardelor limbajului pentru asigurarea portabilității și eficienței codului.
+									Structură riguroasă pentru o citire corectă a informațiilor.
 								</p>
 							</article>
 							<article class="col-4 col-12-mobile special animated-fade-in">
 								<a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
 								<header>
-									<h3><a href="#">Pointeri de Gestiune</a></h3>
+									<h3><a href="#">Interfață Consolă</a></h3>
 								</header>
 								<p>
-									Menținerea legăturilor către extremitățile listei pentru acces rapid la date.
+									Afișarea datelor într-un format ușor de citit de către utilizator.
 								</p>
 							</article>
 							<article class="col-4 col-12-mobile special animated-fade-in">
 								<a href="#" class="image featured"><img src="images/pic09.jpg" alt="" /></a>
 								<header>
-									<h3><a href="#">Module Funcționale</a></h3>
+									<h3><a href="#">Procesare</a></h3>
 								</header>
 								<p>
-									Separarea clară a responsabilităților între funcțiile de citire, afișare și prelucrare.
+									Transformarea datelor brute în informații utile (statistici, filtrări).
 								</p>
 							</article>
 						</div>
