@@ -1,5 +1,4 @@
 <!DOCTYPE HTML>
-
 <html>
 	<head>
 		<title>Teorie - Game Library</title>
@@ -31,6 +30,8 @@
 								<li><a href="explicatii.html">Explicații</a></li>
 								<li><a href="structura.html">Structură</a></li>
 								<li><a href="sursa.html">Sursă</a></li>
+								<li><a href="io.html">Date I/O</a></li>
+								<li><a href="cod.html">Cod Sursă</a></li>
 							</ul>
 						</nav>
 
@@ -42,15 +43,38 @@
 					<div class="container">
 						<article id="main" class="special animated-fade-in">
 							<header>
-								<h2><a href="#">Lista dublu înlănțuită</a></h2>
+								<h2><a href="#">Fundamente Teoretice</a></h2>
 								<p>
-									O structură de date dinamică formată din noduri conectate între ele prin doi pointeri: următor și precedent.
+									Înțelegerea structurilor de date dinamice și a modularizării prin subprograme.
 								</p>
 							</header>
+
+							<section style="text-align: left; max-width: 800px; margin: 0 auto 2em auto;">
+								<h3>Structuri de Date Dinamice (SDD)</h3>
+								<p>
+									Spre deosebire de structurile statice (precum tablourile unidimensionale cu dimensiune fixă), <strong>structurile de date dinamice</strong> permit gestionarea memoriei în timpul execuției programului. Acestea utilizează pointeri pentru a lega elemente alocate în <em>heap</em>, permițând structurii să crească sau să scadă în funcție de necesități.
+								</p>
+								<p>
+									<strong>Lista dublu înlănțuită</strong> este un exemplu de SDD unde fiecare nod conține adresa elementului următor și a celui precedent, oferind flexibilitate maximă în parcurgere și manipulare.
+								</p>
+							</section>
+
+							<section style="text-align: left; max-width: 800px; margin: 0 auto 2em auto;">
+								<h3>Subprograme și Modularizare</h3>
+								<p>
+									<strong>Subprogramele</strong> (funcțiile în C++) reprezintă entități de cod independente care realizează o sarcină specifică. Utilizarea lor permite:
+								</p>
+								<ul>
+									<li><strong>Modulărizare:</strong> Împărțirea unei probleme complexe în subprobleme mai simple.</li>
+									<li><strong>Reutilizare:</strong> Codul scris o singură dată poate fi apelat de mai multe ori.</li>
+									<li><strong>Mentenanță:</strong> Erorile sunt mai ușor de identificat și corectat în blocuri de cod mici.</li>
+								</ul>
+							</section>
+
 							<section style="text-align: left; max-width: 800px; margin: 0 auto;">
 								<h3>Componentele unui nod</h3>
 								<p>
-									Structura unui nod conține:
+									În contextul proiectului nostru, structura unui nod conține:
 								</p>
 								<ul>
 									<li><strong>Informația utilă:</strong> datele despre joc (titlu, an, dificultate, rating).</li>
@@ -64,28 +88,28 @@
 							<article class="col-4 col-12-mobile special animated-fade-in">
 								<a href="#" class="image featured"><img src="images/pic07.jpg" alt="" /></a>
 								<header>
-									<h3><a href="#">Pointer Următor</a></h3>
+									<h3><a href="#">Gestiune Dinamică</a></h3>
 								</header>
 								<p>
-									Adresa de memorie a următorului element din listă, permițând parcurgerea înainte.
+									Utilizarea operatorilor <code>new</code> și <code>delete</code> pentru administrarea eficientă a memoriei.
 								</p>
 							</article>
 							<article class="col-4 col-12-mobile special animated-fade-in">
 								<a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
 								<header>
-									<h3><a href="#">Pointer Precedent</a></h3>
+									<h3><a href="#">Modularitate</a></h3>
 								</header>
 								<p>
-									Adresa de memorie a elementului anterior, permițând navigarea înapoi.
+									Funcții dedicate pentru fiecare operație: creare, inserare, ștergere, sortare.
 								</p>
 							</article>
 							<article class="col-4 col-12-mobile special animated-fade-in">
 								<a href="#" class="image featured"><img src="images/pic09.jpg" alt="" /></a>
 								<header>
-									<h3><a href="#">Informație Utilă</a></h3>
+									<h3><a href="#">Pointeri</a></h3>
 								</header>
 								<p>
-									Câmpul în care sunt stocate datele propriu-zise despre fiecare joc video.
+									Elementele de bază care asigură legăturile în cadrul structurilor de date complexe.
 								</p>
 							</article>
 						</div>

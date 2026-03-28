@@ -1,0 +1,474 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Cod Sursă - Game Library</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			pre {
+				background: #272822;
+				color: #f8f8f2;
+				padding: 2em;
+				border-radius: 8px;
+				overflow-x: auto;
+				text-align: left;
+				font-family: 'Courier New', Courier, monospace;
+				line-height: 1.5;
+			}
+			code {
+				font-family: inherit;
+			}
+		</style>
+	</head>
+	<body class="no-sidebar is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a href="index.html" id="logo">Game Library</a></h1>
+							</header>
+						</div>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="index.html">Home</a></li>
+								<li><a href="prezentare.html">Prezentare</a></li>
+								<li><a href="teorie.html">Teorie</a></li>
+								<li><a href="enunt.html">Enunț</a></li>
+								<li><a href="explicatii.html">Explicații</a></li>
+								<li><a href="structura.html">Structură</a></li>
+								<li><a href="sursa.html">Sursă</a></li>
+								<li><a href="io.html">Date I/O</a></li>
+								<li><a href="cod.html">Cod Sursă</a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+			<!-- Main -->
+				<div class="wrapper style1">
+
+					<div class="container">
+						<article id="main" class="special animated-fade-in">
+							<header>
+								<h2><a href="#">Cod Sursă Complet</a></h2>
+								<p>
+									Implementarea completă în C++ a proiectului Game Library.
+								</p>
+							</header>
+
+							<section>
+								<pre><code>#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+ifstream fin("date.in");
+
+struct nod {
+    string titluJoc;
+    int anLansare;
+    int nivelDificultate;
+    float ratingJucatori;
+    nod* urm;
+    nod* ante;
+};
+
+void creare(nod*&amp; prim, nod*&amp; ultim)
+{
+    int n;
+    fin &gt;&gt; n;
+    fin.ignore();
+
+    prim = ultim = NULL;
+
+    for (int i = 1; i &lt;= n; i++)
+    {
+        nod* p = new nod;
+
+        getline(fin, p-&gt;titluJoc);
+        fin &gt;&gt; p-&gt;anLansare;
+        fin &gt;&gt; p-&gt;nivelDificultate;
+        fin &gt;&gt; p-&gt;ratingJucatori;
+        fin.ignore();
+
+        p-&gt;urm = NULL;
+        p-&gt;ante = ultim;
+
+        if (prim == NULL)
+            prim = p;
+        else
+            ultim-&gt;urm = p;
+
+        ultim = p;
+    }
+}
+
+void parcurgere(nod* prim)
+{
+    if (prim == NULL)
+    {
+        cout &lt;&lt; "Lista este vida\n";
+        return;
+    }
+
+    while (prim != NULL)
+    {
+        cout &lt;&lt; prim-&gt;titluJoc &lt;&lt; " - "
+            &lt;&lt; prim-&gt;anLansare &lt;&lt; " - dificultate: "
+            &lt;&lt; prim-&gt;nivelDificultate &lt;&lt; " - rating: "
+            &lt;&lt; prim-&gt;ratingJucatori &lt;&lt; "\n";
+        prim = prim-&gt;urm;
+    }
+}
+
+void inserare(nod*&amp; prim, nod*&amp; ultim)
+{
+    string titlu;
+    cout &lt;&lt; "Titlul jocului dupa care inseram: ";
+    cin.ignore();
+    getline(cin, titlu);
+
+    nod* p = prim;
+    while (p != NULL &amp;&amp; p-&gt;titluJoc != titlu)
+        p = p-&gt;urm;
+
+    if (p == NULL)
+    {
+        cout &lt;&lt; "Jocul nu exista\n";
+        return;
+    }
+
+    nod* q = new nod;
+
+    cout &lt;&lt; "Titlu nou: ";
+    getline(cin, q-&gt;titluJoc);
+    cout &lt;&lt; "An lansare: ";
+    cin &gt;&gt; q-&gt;anLansare;
+    cout &lt;&lt; "Nivel dificultate: ";
+    cin &gt;&gt; q-&gt;nivelDificultate;
+    cout &lt;&lt; "Rating: ";
+    cin &gt;&gt; q-&gt;ratingJucatori;
+
+    q-&gt;urm = p-&gt;urm;
+    q-&gt;ante = p;
+
+    if (p-&gt;urm != NULL)
+        p-&gt;urm-&gt;ante = q;
+    else
+        ultim = q;
+
+    p-&gt;urm = q;
+}
+
+void stergere(nod*&amp; prim, nod*&amp; ultim)
+{
+    string titlu;
+    cout &lt;&lt; "Titlul jocului de sters: ";
+    cin.ignore();
+    getline(cin, titlu);
+
+    nod* p = prim;
+    while (p != NULL &amp;&amp; p-&gt;titluJoc != titlu)
+        p = p-&gt;urm;
+
+    if (p == NULL)
+    {
+        cout &lt;&lt; "Jocul nu exista\n";
+        return;
+    }
+
+    if (p == prim)
+    {
+        prim = prim-&gt;urm;
+        if (prim != NULL)
+            prim-&gt;ante = NULL;
+        else
+            ultim = NULL;
+    }
+    else if (p == ultim)
+    {
+        ultim = ultim-&gt;ante;
+        ultim-&gt;urm = NULL;
+    }
+    else
+    {
+        p-&gt;ante-&gt;urm = p-&gt;urm;
+        p-&gt;urm-&gt;ante = p-&gt;ante;
+    }
+
+    delete p;
+}
+
+void ordonareRating(nod* prim)
+{
+    if (prim == NULL) return;
+
+    bool modificat;
+    do {
+        modificat = false;
+        nod* p = prim;
+
+        while (p-&gt;urm != NULL)
+        {
+            if (p-&gt;ratingJucatori &lt; p-&gt;urm-&gt;ratingJucatori)
+            {
+                swap(p-&gt;titluJoc, p-&gt;urm-&gt;titluJoc);
+                swap(p-&gt;anLansare, p-&gt;urm-&gt;anLansare);
+                swap(p-&gt;nivelDificultate, p-&gt;urm-&gt;nivelDificultate);
+                swap(p-&gt;ratingJucatori, p-&gt;urm-&gt;ratingJucatori);
+                modificat = true;
+            }
+            p = p-&gt;urm;
+        }
+    } while (modificat);
+}
+
+int numarJocuri(nod* prim)
+{
+    int nr = 0;
+    while (prim != NULL)
+    {
+        nr++;
+        prim = prim-&gt;urm;
+    }
+    return nr;
+}
+
+void ratingMaxim(nod* prim)
+{
+    if (prim == NULL) return;
+
+    nod* max = prim;
+    prim = prim-&gt;urm;
+
+    while (prim != NULL)
+    {
+        if (prim-&gt;ratingJucatori &gt; max-&gt;ratingJucatori)
+            max = prim;
+        prim = prim-&gt;urm;
+    }
+
+    cout &lt;&lt; "Joc cu rating maxim: "
+        &lt;&lt; max-&gt;titluJoc &lt;&lt; " - "
+        &lt;&lt; max-&gt;ratingJucatori &lt;&lt; "\n";
+}
+
+void ratingMinim(nod* prim)
+{
+    if (prim == NULL) return;
+
+    nod* min = prim;
+    prim = prim-&gt;urm;
+
+    while (prim != NULL)
+    {
+        if (prim-&gt;ratingJucatori &lt; min-&gt;ratingJucatori)
+            min = prim;
+        prim = prim-&gt;urm;
+    }
+
+    cout &lt;&lt; "Joc cu rating minim: "
+        &lt;&lt; min-&gt;titluJoc &lt;&lt; " - "
+        &lt;&lt; min-&gt;ratingJucatori &lt;&lt; "\n";
+}
+
+float medieRating(nod* prim)
+{
+    if (prim == NULL) return 0;
+
+    float suma = 0;
+    int nr = 0;
+
+    while (prim != NULL)
+    {
+        suma += prim-&gt;ratingJucatori;
+        nr++;
+        prim = prim-&gt;urm;
+    }
+
+    return suma / nr;
+}
+
+void jocuriDupaAn(nod* prim, int an)
+{
+    while (prim != NULL)
+    {
+        if (prim-&gt;anLansare &gt; an)
+            cout &lt;&lt; prim-&gt;titluJoc &lt;&lt; " - " &lt;&lt; prim-&gt;anLansare &lt;&lt; "\n";
+        prim = prim-&gt;urm;
+    }
+}
+
+void eliberare(nod*&amp; prim)
+{
+    nod* p;
+    while (prim != NULL)
+    {
+        p = prim;
+        prim = prim-&gt;urm;
+        delete p;
+    }
+}
+
+int main()
+{
+    nod* prim;
+    nod* ultim;
+
+    creare(prim, ultim);
+
+    int optiune;
+
+    do {
+        cout &lt;&lt; "\n      MENIU \n";
+        cout &lt;&lt; "1. Afisare lista\n";        cout &lt;&lt; "2. Inserare joc\n";
+        cout &lt;&lt; "3. Stergere joc\n";
+        cout &lt;&lt; "4. Ordonare dupa rating\n";
+        cout &lt;&lt; "5. Numar jocuri\n";
+        cout &lt;&lt; "6. Rating maxim\n";
+        cout &lt;&lt; "7. Rating minim\n";
+        cout &lt;&lt; "8. Media ratingurilor\n";
+        cout &lt;&lt; "9. Jocuri dupa un an\n";
+        cout &lt;&lt; "0. Iesire\n";
+        cout &lt;&lt; "Optiunea: ";
+        cin &gt;&gt; optiune;
+
+        switch (optiune)
+        {
+        case 1:
+            parcurgere(prim);
+            break;
+
+        case 2:
+            inserare(prim, ultim);
+            break;
+
+        case 3:
+            stergere(prim, ultim);
+            break;
+
+        case 4:
+            ordonareRating(prim);
+            cout &lt;&lt; "Lista a fost ordonata\n";
+            break;
+
+        case 5:
+            cout &lt;&lt; "Numar total jocuri: "
+                &lt;&lt; numarJocuri(prim) &lt;&lt; "\n";
+            break;
+
+        case 6:
+            ratingMaxim(prim);
+            break;
+
+        case 7:
+            ratingMinim(prim);
+            break;
+
+        case 8:
+            cout &lt;&lt; "Media ratingurilor: "
+                &lt;&lt; medieRating(prim) &lt;&lt; "\n";
+            break;
+
+        case 9:
+        {
+            int an;
+            cout &lt;&lt; "Introdu anul: ";
+            cin &gt;&gt; an;
+            jocuriDupaAn(prim, an);
+            break;
+        }
+
+        case 0:
+            break;
+
+        default:
+            cout &lt;&lt; "Optiune invalida\n";
+        }
+
+    } while (optiune != 0);
+
+    eliberare(prim);
+
+    return 0;
+} </code></pre>
+							</section>
+
+						</article>
+						<hr />
+						<div class="row">
+							<article class="col-4 col-12-mobile special animated-fade-in">
+								<a href="#" class="image featured"><img src="images/pic07.jpg" alt="" /></a>
+								<header>
+									<h3><a href="#">Biblioteci Utilizate</a></h3>
+								</header>
+								<p>
+									iostream, fstream și string pentru manipularea datelor.
+								</p>
+							</article>
+							<article class="col-4 col-12-mobile special animated-fade-in">
+								<a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
+								<header>
+									<h3><a href="#">Structură Nod</a></h3>
+								</header>
+								<p>
+									Implementarea legăturilor duble pentru flexibilitate în navigare.
+								</p>
+							</article>
+							<article class="col-4 col-12-mobile special animated-fade-in">
+								<a href="#" class="image featured"><img src="images/pic09.jpg" alt="" /></a>
+								<header>
+									<h3><a href="#">Meniu Interactiv</a></h3>
+								</header>
+								<p>
+									Interfață consolă simplă și eficientă pentru gestionarea colecției.
+								</p>
+							</article>
+						</div>
+					</div>
+
+				</div>
+
+			<!-- Footer -->
+				<div id="footer">
+					<div class="container">
+						<hr />
+						<div class="row">
+							<div class="col-12">
+
+								<!-- Copyright -->
+									<div class="copyright">
+										<ul class="menu">
+											<li>&copy; Game Library. Toate drepturile rezervate.</li><li>made with love by Game Library</li>
+										</ul>
+									</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
